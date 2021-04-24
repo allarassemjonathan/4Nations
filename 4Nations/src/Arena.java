@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Arena {
@@ -36,6 +35,10 @@ public class Arena {
 		
 		return opponent;
 		
+	}
+	
+	public char getAffinity() {
+		return this.affinity;
 	}
 
 }
