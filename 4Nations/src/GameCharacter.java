@@ -27,7 +27,7 @@ abstract public class GameCharacter {
 		return currentVitality;
 	}
 	public void setCurVitality(int vitality) {
-		this.currentVitality = currentVitality;
+		this.currentVitality = vitality;
 	}
 	public int getMaxVitality() {
 		return maxVitality;
@@ -59,7 +59,7 @@ abstract public class GameCharacter {
 	 * @param attackNum - the index of the attack within Attacks
 	 * @return number of damage to be dealt; negative values are self-restoring rather than damaging
 	 */
-	public int attack(int attackNum) {
+	public int useAttack(int attackNum) {
 		return Attacks[attackNum].findAttackDamage();
 	}
 	/** Simulates taking damage by reducing vitality by set amount.
@@ -72,5 +72,8 @@ abstract public class GameCharacter {
 		else {
 		setCurVitality(getCurVitality() - numDamage);
 		}
+	}
+	public String getAttackInfo(int attackNum) {
+		return Attacks[attackNum].getInfo();
 	}
 }
