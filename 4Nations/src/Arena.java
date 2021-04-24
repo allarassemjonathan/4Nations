@@ -6,7 +6,17 @@ public class Arena {
 	private String[] possibleAliases;
 	private char affinity;
 	
-	public Arena(GameCharacter typicalCombatant, String[] possibleAliases, char affinity) {
+	public Arena(GameCharacter tc, String[] pa, char affinity) {
+		
+		possibleAliases = new String[pa.length];
+		for(int i = 0; i < pa.length; i++) {
+			possibleAliases[i] = pa[i];
+		}
+		
+		typicalCombatant = new GameCharacter(tc);
+		
+		this.affinity = affinity;
+		
 	}
 	
 	/** Provides an opponent for the player within the Arena. Uses typicalCombatant with modified

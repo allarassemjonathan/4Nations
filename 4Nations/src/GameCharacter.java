@@ -20,6 +20,21 @@ public class GameCharacter {
 			this.Attacks[i] = Attacks[i];
 		}
 	}
+	
+	public GameCharacter(GameCharacter that) {
+		this.affinity = that.getAffinity();
+		this.name = that.getName();
+		this.attack = that.getAttack();
+		this.maxVitality = that.getMaxVitality();
+		this.currentVitality = that.getCurVitality();
+		this.speed = that.getSpeed();
+		Attack[] thatAttacks = that.getAttacks();
+		this.Attacks = new Attack[thatAttacks.length];
+		for (int i = 0; i < Attacks.length; i++) {
+			this.Attacks[i] = thatAttacks[i];
+		}
+	}
+	
 	public String getName() {
 		return name;
 	}
