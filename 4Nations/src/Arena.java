@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Arena {
 	private GameCharacter typicalCombatant;
@@ -14,7 +15,17 @@ public class Arena {
 	 * @return - GameCharacter to fight
 	 */
 	public GameCharacter getOpponent(GameCharacter player) {
-		return null;
+		
+		Random r = new Random();
+		String name = possibleAliases[r.nextInt(possibleAliases.length)];
+		
+		GameCharacter opponent = new GameCharacter(this.typicalCombatant.getAffinity(), name, 
+				(this.typicalCombatant.getAttack() + player.getLevel()), 
+				(this.typicalCombatant.getMaxVitality() + player.getLevel()), 
+				(this.typicalCombatant.getSpeed() + player.getLevel()), typicalCombatant.getAttacks());
+		
+		return opponent;
+		
 	}
 
 }

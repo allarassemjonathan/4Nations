@@ -29,6 +29,10 @@ public class Attack {
 				damage += Die.roll(dice[i][0]);
 			}
 		}
+		
+		if(isHealing) {
+			return -damage;
+		}
 
 		return damage;
 	}

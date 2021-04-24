@@ -1,4 +1,4 @@
-abstract public class GameCharacter {
+public class GameCharacter {
 	private char affinity; //Egyptian, Persian, Roman, or Greek
 	private String name;
 	private int attack;
@@ -9,7 +9,16 @@ abstract public class GameCharacter {
 	private Attack[] Attacks;
 	
 	public GameCharacter(char affinity, String name, int attack, int vitality, int speed, Attack[] Attacks) {
-		
+		this.affinity = affinity;
+		this.name = name;
+		this.attack = attack;
+		this.maxVitality = vitality;
+		this.currentVitality = vitality;
+		this.speed = speed;
+		this.Attacks = new Attack[Attacks.length];
+		for (int i = 0; i < Attacks.length; i++) {
+			this.Attacks[i] = Attacks[i];
+		}
 	}
 	public String getName() {
 		return name;
@@ -75,5 +84,8 @@ abstract public class GameCharacter {
 	}
 	public String getAttackInfo(int attackNum) {
 		return Attacks[attackNum].getInfo();
+	}
+	public Attack[] getAttacks() {
+		return this.Attacks;
 	}
 }
