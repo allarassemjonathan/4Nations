@@ -11,7 +11,7 @@ public class Die {
 	public static int roll(int numSides) {
 		r = new Random();
 
-		return r.nextInt(numSides - 1) + 1;
+		return r.nextInt(numSides) + 1;
 	}
 
 }

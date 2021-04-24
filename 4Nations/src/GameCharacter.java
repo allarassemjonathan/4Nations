@@ -12,52 +12,65 @@ abstract public class GameCharacter {
 		
 	}
 	public String getName() {
-		return "";
+		return name;
 	}
 	public void setName(String name) {
+		this.name = name;
 	}
 	public int getAttack() {
-		return 0;
+		return attack;
 	}
 	public void setAttack(int attack) {
+		this.attack = attack;
 	}
 	public int getCurVitality() {
-		return 0;
+		return currentVitality;
 	}
 	public void setCurVitality(int vitality) {
+		this.currentVitality = currentVitality;
 	}
 	public int getMaxVitality() {
-		return 0;
+		return maxVitality;
 	}
 	public void setMaxVitality(int vitality) {
+		this.maxVitality = maxVitality;
 	}
 	public int getSpeed() {
-		return 0;
+		return speed;
 	}
 	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 	public char getAffinity() {
-		return ' ';
+		return affinity;
 	}
 	public void setAffinity(char affinity) {
+		this.affinity = affinity;
 	}
 	public int getLevel() {
-		return 0;
+		return level;
 	}
 	/** Increments level member variable
 	 */
 	public void incrementLevel() {
+		level++;
 	}
 	/** Simulates using an attack.
 	 * @param attackNum - the index of the attack within Attacks
 	 * @return number of damage to be dealt; negative values are self-restoring rather than damaging
 	 */
 	public int attack(int attackNum) {
-		return 0;
+		return Attacks[attackNum].findAttackDamage();
 	}
 	/** Simulates taking damage by reducing vitality by set amount.
 	 * @param numDamage - the amount of damage to be taken
 	 */
 	public void takeDamage(int numDamage) {
+		if(numDamage > currentVitality) {
+			setCurVitality(0);
+		}
+		else {
+		setCurVitality(getCurVitality() - numDamage);
+		}
 	}
 }
