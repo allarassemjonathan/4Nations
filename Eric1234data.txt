@@ -1,0 +1,3 @@
+username : Eric
+password : 1234
+numWins : 0

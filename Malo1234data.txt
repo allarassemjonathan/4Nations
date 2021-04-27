@@ -1,0 +1,3 @@
+username : Malo
+password : 1234
+numWins : 0

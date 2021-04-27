@@ -1,0 +1,3 @@
+username : Jo
+password : 1234
+numWins : 0

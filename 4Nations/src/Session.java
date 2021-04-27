@@ -3,18 +3,22 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/**
+ * 
+ * @author ALLARASSEMJJ20
+ *
+ */
 public class Session {
 
 	private int numWins;
 	private int level = numWins%5;
-	private Arena currentArena = new Arena();
+	private Arena currentArena;
 	private String username;
 	private String password;
 	private Integer [][] mapArena;
 	private static final ArrayList <Arena> ArenaList = new ArrayList(List.of(new Arena(), new Arena(), new Arena(), new Arena()));
 	private GameCharacter personas;
-	
+	private final int SIZE = 5;
 	public Session() {
 		
 	}
@@ -29,10 +33,9 @@ public class Session {
 		// this.currentArena = ?? 
 		this.username = username;
 		this.password = password;
-		this.personas = new GameCharacter(); //example
-		
-		
-	
+		this.mapArena = new Integer[SIZE][SIZE];
+		mapArena[0][0] = 1;
+		this.personas = new GameCharacter();
 	}
 	
 	/**
@@ -43,7 +46,6 @@ public class Session {
 	public Session(File file) throws FileNotFoundException {
 		Scanner sc = new Scanner(file);
 		while(sc.hasNextLine()) {
-
 			this.username = sc.nextLine().substring(11);
 			this.password = sc.nextLine().substring(11);
 			this.numWins = Integer.parseInt(sc.nextLine().substring(10));
@@ -52,19 +54,12 @@ public class Session {
 		
 	}
 	
-	public char getAffinity() {
-		return this.affinity;
-	}
-	
-	public void setAffinity() {
-		
-	}
 	/**
 	 * 
 	 * @param NumWins of the session's user to set
 	 */
 	public void setNumWins(int NumWins) {
-		
+		this.numWins = numWins;
 	}
 	
 	/**
@@ -126,16 +121,16 @@ public class Session {
 	 * 
 	 * @param persona of the session's user to set
 	 */
-	public void addPersonas(GameCharacter persona) {
-		personas.add(persona);
+	public GameCharacter getCharacter() {
+		return this.personas;
 	}
 	
 	/**
 	 * 
 	 * @param list of personas of the session's user to set
 	 */
-	public void setPersonas(ArrayList<GameCharacter> list) {
-		this.personas = new ArrayList<>(list);
+	public void setCharacter(GameCharacter gc) {
+		this.personas = gc ;
 	}
 	
 	/**
@@ -152,6 +147,36 @@ public class Session {
 	 */
 	public Arena getcurrentArena() {
 		return this.currentArena;
+	}
+	/**
+	 * 
+	 * @return the stage in the game
+	 * which is how far you are to end
+	 * the current arena
+	 */
+	public int getStage() {
+		return numWins%SIZE;
+	}
+	/**
+	 * 
+	 * @return the arena index
+	 */
+	public int getArenaIndex() {
+		return numWins/SIZE;
+	}
+	/**
+	 * 
+	 * @param numWins
+	 */
+	public void updateMapArena(int numWins) {
+		
+		for(int i = 0; i < this.mapArena[0].length - 1; i++) {
+			for(int j = i; j < this.mapArena.length - 1;j++) {
+				this.mapArena[i][j] = 3;
+			}
+		}
+		
+		this.mapArena[numWins%SIZE][numWins/SIZE] = 1;
 	}
 }
 

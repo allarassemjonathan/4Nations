@@ -77,12 +77,13 @@ public class GameManager {
 	 * 
 	 * @param file the data of the user
 	 */
-	public void resumeSession(File file) {
+	public Session resumeSession(File file) {
 		try {
 			this.currentSession = new Session(file);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("An error occured restart the game");;
 		}
+		return currentSession;
 		
 	}
 	
@@ -95,8 +96,9 @@ public class GameManager {
 	 * @throws FileNotFoundException if the file is not found
 	 */
 	public void Login(String username,String password) throws FileNotFoundException {
+		
 		if(this.HasAccount(username,password)) {
-			File file = new File(username + password + "data.txt");
+			File file = new File(username + "&" + password + ".txt");
 			this.resumeSession(file);
 		}
 		else {
@@ -125,13 +127,12 @@ public class GameManager {
 			 * Create a file to hold the data of the user
 			 */
 			
-			OutputStream ou = new FileOutputStream(username + password + "data.txt");
+			OutputStream ou = new FileOutputStream(username + "&" + password + ".txt");
 			PrintWriter bic = new PrintWriter(ou);
 			bic.println("username : " + username);
 			bic.println("password : " + password);
 			bic.println("numWins : " + 0);
-			bic.println("Arena : " + this.currentSession.getcurrentArena().toString());
-			System.out.println("registration successful");
+			System.out.println("\t\t\t\t\t\t\t\tregistration successful!");
 		
 			// you have a level for your progression
 			bic.close();
@@ -140,12 +141,10 @@ public class GameManager {
 		else {
 			this.Login(username, password);
 			System.out.println("It looks like you forgot that you already have an account");
-		}
-		}
-		catch(FileNotFoundException f) {
+			}
+		}catch(FileNotFoundException f) {
 			System.out.println("Sorry you are not able to open your account");
-		}
-		catch(Exception e) {
+		}catch(Exception e) {
 			System.out.println("Give a correct input");
 		}
 		
@@ -175,7 +174,33 @@ public class GameManager {
 		}
 		
 	}
-	
+	 public void CreateCharacter() {
+		 System.out.println("Set up your character!\n");
+		 System.out.println("\tPress R to be a Roman");
+		 System.out.println("\tPress E to be a Egyptian");
+		 System.out.println("\tPress G to be a Greek");
+		 System.out.println("\tPress P to be a Persian");
+		 Scanner sc = new Scanner(System.in);
+		 char in = sc.next().toUpperCase().charAt(0);
+		 this.currentSession.getCharacter().setAffinity(in);
+		 this.currentSession.setcurrentArena(new Arena(this.currentSession.getNumWins()));
+		 this.currentSession.setCharacter(new GameCharacter(this.currentSession.getNumWins()));
+		 String string = "";
+		 if(in == 'R') {
+			 string = "Rome";
+		 }
+		 else if(in == 'E') {
+			 string = "Egypt";
+		 }
+		 else if(in == 'G') {
+			 string = "Greek";
+		 }
+		 else if(in == 'P') {
+			 string = "Persia";
+		 }
+		 System.out.println("Welcome in " + string + " !\nDont forget to put the console in full screen :)");
+		 
+	 }
 	/**
 	 * 
 	 * @param username of the new user
@@ -195,8 +220,7 @@ public class GameManager {
 		return this.credentials;
 	}
 	
-	public void Manager() {
-		
+	public void Connection() {
 		try{
 			System.out.println("Welcome to the 4 Nations\n");
 			System.out.println("1 Registration\n2 Login\n3 About us.\n");
@@ -211,6 +235,7 @@ public class GameManager {
 					String password1 = sc.next();
 					this.Register(username1,password1);
 					this.currentSession = new Session(username1,password1);
+					this.CreateCharacter();
 					isLogged = true;
 					break;
 				case 2 :
@@ -222,7 +247,7 @@ public class GameManager {
 					isLogged = true;
 					break;
 				case 3 :
-					System.out.println("Empty but will soon be filled");
+					System.out.println("Coded by\n\tEli Lowry\nNathan Steiger\nJonathan AAllarassem");
 			}
 			
 	}catch(FileNotFoundException f) {
@@ -232,10 +257,31 @@ public class GameManager {
 	}catch(Exception e) {
 			System.out.println("Sorry an error occured, the game is saving your progress and restarting");
 	}
+	}
 	
+	public void Menu() {
+		System.out.println("\t\t\t\t\t\t\t\t\tYou are logged in.");
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println("\t\t\t\tWelcome " + currentSession.getUsername() + " !");
+		System.out.println("Press numbers 1,2 or 3\n\n\t\t\t\t1 Quick fight"
+				+ "\n\t\t\t\t2 Resume Arena\n\t\t\t\t3 My Characters");
+		Scanner sc = new Scanner(System.in);
+		int entry = sc.nextInt();
+		
+		switch(entry) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		}
+		
+	}
+	public void Manager() {
+		this.Connection();
 		if(isLogged) {
-			System.out.println("You are logged");
-			System.out.println("Welcome " + currentSession.getUsername());
+			this.Menu();
 			
 		}
 }

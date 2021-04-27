@@ -20,7 +20,19 @@ public class GameCharacter {
 			this.Attacks[i] = Attacks[i];
 		}
 	}
-	
+	/**
+	 * I needed this as well
+	 */
+	public GameCharacter() {
+		
+	}
+	/**
+	 * I needed this too :)
+	 * @param numWin
+	 */
+	public GameCharacter(Integer numWin) {
+		
+	}
 	public GameCharacter(GameCharacter that) {
 		this.affinity = that.getAffinity();
 		this.name = that.getName();

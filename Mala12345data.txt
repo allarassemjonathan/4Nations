@@ -1,0 +1,3 @@
+username : Mala
+password : 12345
+numWins : 0

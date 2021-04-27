@@ -4,7 +4,6 @@ public class Arena {
 	private GameCharacter typicalCombatant;
 	private String[] possibleAliases;
 	private char affinity;
-	
 	public Arena(GameCharacter tc, String[] pa, char affinity) {
 		
 		possibleAliases = new String[pa.length];
@@ -17,6 +16,22 @@ public class Arena {
 		this.affinity = affinity;
 		
 	}
+	
+	/**
+	 * Sorry I needed this to continue working 
+	 * so I created this ghost class
+	 */
+	
+	public Arena(Integer numWin) {
+		
+	}
+	/**
+	 * Same thing for this.
+	 */
+	public Arena() {
+		
+	}
+	
 	
 	/** Provides an opponent for the player within the Arena. Uses typicalCombatant with modified
 	 *  stats based on the level of player and name generated from possibleAliases.
