@@ -1,0 +1,3 @@
+username : STEIGERNA20
+password : 262935
+numWins : 0
