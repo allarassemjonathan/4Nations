@@ -91,8 +91,10 @@ public class Battle {
 		while(loop == false) {
 			if(getTurn() == true) {//Player's turn
 				System.out.println("It is your turn.\nYour health is " + player.getCurVitality() + " Please select your attack");
+				
 				int selection = input.nextInt();
-				player.attack(selection);
+				player.findAttackInfo(selection);
+				player.setAttack(selection);
 				int damage = Attack.findAttackDamage();
 				if (damage >= 0) {
 					computer.takeDamage(damage);
